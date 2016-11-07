@@ -1,0 +1,2 @@
+# Bleazy
+Blog easy peasy
