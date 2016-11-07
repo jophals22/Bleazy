@@ -1,0 +1,1 @@
+json.array! @essentials, partial: 'essentials/essential', as: :essential

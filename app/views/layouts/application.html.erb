@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+  <div class="top-bar">
+	  <div class="top-bar-left">
+	    <ul class="dropdown menu" data-dropdown-menu>
+	      <li class="menu-text"><a href="/homes">GIDGET</a></li>
+	      <li>
+	        <a href="#">One</a>
+	        <ul class="menu vertical">
+	          <li><a href="#">One</a></li>
+	          <li><a href="#">Two</a></li>
+	          <li><a href="#">Three</a></li>
+	        </ul>
+	      </li>
+	      <li><a href="#">New Music</a></li>
+	      <li><a href="/essentials">Essentials</a></li>
+	      <li><input type="search" placeholder="Search"></li>
+	      <li><button type="button" class="button">Search</button></li>
+	    </ul>
+
+	  </div>
+	  <div class="top-bar-right">
+
+        <% if user_signed_in? %>
+            <ul class="dropdown menu" data-dropdown-menu>
+              <li>
+                <%= link_to current_user.first_name %>
+                  <ul class="menu vertical">
+                    <li><a href="#">Two</a></li>
+                    <li><a href="#">Three</a></li>
+                    <li><a href="#">Settings</a></li>
+                  </ul>
+              
+              </li>
+            <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+            </ul>  
+        <% else %>
+          <ul class="menu">
+            <li><%= link_to "Register", new_user_registration_path %></li>
+            <li><%= link_to "Login", new_user_session_path %></li>
+          </ul>
+        <% end %>
+     </ul>
+    </div>
+	</div>
+		
+    <%= yield %>
+
+  </body>
+</html>
